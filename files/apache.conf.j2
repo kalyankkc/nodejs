@@ -2,7 +2,7 @@
     ServerAdmin webmaster@localhost
     ServerName {{ http_host }}
     ServerAlias www.{{ http_host }}
-    DocumentRoot /var/www/{{ http_host }}/pass/public
+    DocumentRoot /var/www/{{ http_host }}/app/public
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
@@ -10,7 +10,7 @@
     ServerAdmin webmaster@localhost
     ServerName {{ http_host1 }}
     ServerAlias www.{{ http_host1 }}
-    DocumentRoot /var/www/{{ http_host1 }}/pass/public
+    DocumentRoot /var/www/{{ http_host1 }}/app/public
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
