@@ -1,7 +1,7 @@
 node {
 
   stage('Git-Checkout') {
-   git 'https://github.com/AbhishekPattnaik04/COENodejs.git'
+   git 'https://github.com/Shyamjith06/nodejs.git'
   }
   stage('ansible deploy'){
   sh label: 'ansible', script: ' ansible-playbook -i inventory playbook.yml -u abhishek'
