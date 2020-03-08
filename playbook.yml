@@ -15,6 +15,10 @@
 
     - name: Install Apache
       apt: name=apache2 update_cache=yes state=latest
+      
+    - name: Install nodejs 
+      apt: name=nodejs
+      apt: name=npm
 
     - name: Install jinja2
       apt: name=python-jinja2 state=latest update_cache=yes
