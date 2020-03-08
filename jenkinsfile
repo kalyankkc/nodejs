@@ -4,6 +4,6 @@ node {
    git 'https://github.com/Shyamjith06/nodejs.git'
   }
   stage('ansible deploy'){
-  sh label: 'ansible', script: ' ansible-playbook -i inventory playbook.yml -u abhishek'
+  sh label: 'ansible', script: 'ansible-playbook playbook.yml'
 }
 }
