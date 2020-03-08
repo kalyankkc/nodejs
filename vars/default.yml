@@ -1,0 +1,8 @@
+---
+app_user: "Shyam"
+http_host: "yoyo"
+http_conf: "yoyoyoy.conf"
+http_port: "80"
+http_host1: "shyam"
+http_port1: "8082"
+disable_default: true
