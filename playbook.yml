@@ -5,6 +5,7 @@
 - hosts: localhost
   become: true
   become: yes
+  become_method: sudo
   vars_files:
     - vars/default.yml
 
