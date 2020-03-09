@@ -1,5 +1,5 @@
 ---
-app_user: "Shyam"
+app_user: "ubuntu"
 http_conf: "my.conf"
 http_host1: "app1"
 http_host2: "app2"
