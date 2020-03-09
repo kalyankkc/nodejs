@@ -4,8 +4,6 @@
 ---
 - hosts: localhost
   become: true
-  become_method: sudo
-  become_user: root
   
   
   vars_files:
