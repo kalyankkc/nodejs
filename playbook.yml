@@ -6,7 +6,7 @@
   become: true
   become_method: sudo
   become_user: root
-  ansible_become_pass: root
+  
   
   vars_files:
     - vars/default.yml
