@@ -117,7 +117,7 @@
       notify: Reload Apache
      
     - name: "UFW - Allow HTTP on port {{ http_port1 }}"
-     ufw:
+      ufw:
         rule: allow
         port: "{{ http_port1 }}"
         proto: tcp
