@@ -24,20 +24,20 @@
     - name: Install jinja2
       apt: name=python-jinja2 state=latest update_cache=yes
 
-    - name: Install Passenger Packages
+    - name: Add Passenger Packages
       apt: name=dirmngr  state=latest update_cache=yes
       apt: name=gnupg state=latest state=latest update_cache=yes
 
-    - name: add_key
+    - name: add_key for passenger package
       apt_key:
           keyserver: hkp://keyserver.ubuntu.com:80
           id: 561F9B9CAC40B2F7
 
-    - name: passeneger
+    - name: Install passeneger package
       apt: name=apt-transport-https state=latest update_cache=yes
       apt: name=ca-certificates state=latest update_cache=yes
 
-    - name: yoyo
+    - name: Set up Passenger
       command: sh -c echo deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main > /etc/apt/sources.list.d/passenger.list
 
     - name: passeneger_package installation
@@ -48,40 +48,59 @@
       command: a2enmod passenger
       command: apache2ctl restart
 
-    - name: Create document root
-      file:
-        path: "/var/www/{{ http_host }}"
-        state: directory
-        owner: "{{ app_user }}"
-        mode: '0755'
-
-    - name: Create document root 2
+    - name: Create document root1
       file:
         path: "/var/www/{{ http_host1 }}"
         state: directory
         owner: "{{ app_user }}"
         mode: '0755'
 
-    - name: Copy index test page
-      command: cp -r files/app /var/www/{{ http_host }}
+    - name: Create document root 2
+      file:
+        path: "/var/www/{{ http_host2 }}"
+        state: directory
+        owner: "{{ app_user }}"
+        mode: '0755'
+        
+        
+    - name: Create document root 3
+      file:
+        path: "/var/www/{{ http_host3 }}"
+        state: directory
+        owner: "{{ app_user }}"
+        mode: '0755'
+
+    - name: Copy index  page for app1
+      command: cp -r files/app /var/www/{{ http_host1 }}
       with_items:
        - "app.js"
        - "public/"
        - "npm-shrinkwrap.json"
        - "package.json"
 
-    - name: Copy index test page
-      command: cp -r files/app /var/www/{{ http_host1 }}
+    - name: Copy index test page for app2
+      command: cp -r files/app /var/www/{{ http_host2 }}
       with_items:
         - "app.js"
         - "public/"
         - "npm-shrinkwrap.json"
         - "package.json"
+     
+    - name: Copy index test page for app3
+      command: cp -r files/app /var/www/{{ http_host3 }}
+      with_items:
+        - "app.js"
+        - "public/"
+        - "npm-shrinkwrap.json"
+        - "package.json"
+     
 
     - name: Go to the folder and execute command
-      command: chdir=/var/www/{{ http_host }}/app  npm install --production
+      command: chdir=/var/www/{{ http_host1 }}/app  npm install --production
     - name: Go to the folder and execute command
-      command: chdir=/var/www/{{ http_host1 }}/app  npm install --production    
+      command: chdir=/var/www/{{ http_host2 }}/app  npm install --production
+    - name: Go to the folder and execute command
+      command: chdir=/var/www/{{ http_host3 }}/app  npm install --production    
 
     - name: Set up Apache virtualhost
       template:
@@ -97,7 +116,13 @@
       when: disable_default
       notify: Reload Apache
 
-    - name: "UFW - Allow HTTP on port {{ http_port }}"
+    - name: "UFW - Allow HTTP on port {{ http_port1 }}"
+      ufw:
+        rule: allow
+        port: "{{ http_port }}"
+        proto: tcp
+        
+    - name: "UFW - Allow HTTP on port {{ http_port2 }}"
       ufw:
         rule: allow
         port: "{{ http_port }}"
