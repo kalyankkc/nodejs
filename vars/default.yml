@@ -1,8 +1,10 @@
 ---
 app_user: "Shyam"
-http_host: "yoyo"
-http_conf: "yoyoyoy.conf"
-http_port: "80"
-http_host1: "shyam"
-http_port1: "8082"
+http_conf: "my.conf"
+http_host1: "app1"
+http_host2: "app2"
+http_host3: "app3"
+http_port1: "80"
+http_port2: "8082"
+http_port3: "8083"
 disable_default: true
