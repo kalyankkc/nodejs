@@ -123,7 +123,7 @@
         proto: tcp
 
     - name: "UFW - Allow HTTP on port {{ http_port2 }}"
-     ufw:
+      ufw:
        rule: allow
        port: "{{ http_port2 }}"
        proto: tcp
